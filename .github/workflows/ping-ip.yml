@@ -28,10 +28,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 第二步：使用 ping0.cc 从多个地点获取 IP 并保存
-      # 添加 User-Agent 头来模拟浏览器访问，防止被屏蔽
-      - name: Get IPs from multiple locations using ping0.cc
-        run: curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" ping0.cc/cf.090227.xyz > ip.txt
+      # 第二步：使用 ping.sx 从多个地点获取 IP 并保存
+      # 添加 User-Agent 头来模拟浏览器访问
+      - name: Get IPs from multiple locations using ping.sx
+        run: curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" ping.sx/cf.090227.xyz > ip.txt
 
       # 第三步：提交并推送文件到仓库
       - name: Commit and push if changed
