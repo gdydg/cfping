@@ -28,11 +28,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 第二步：Ping URL 并解析出 IP 地址保存到文件
-      # 使用 ping -c 1 发送一个数据包
-      # 然后通过 head, cut 命令从返回的文本中提取出 IP 地址
-      - name: Ping URL and save IP
-        run: ping -c 1 cf.090227.xyz | head -n 1 | cut -d '(' -f 2 | cut -d ')' -f 1 > ip.txt
+      # 第二步：使用 ping0.cc 从多个地点获取 IP 并保存
+      # 使用 curl 命令访问 ping0.cc 的文本接口
+      - name: Get IPs from multiple locations using ping0.cc
+        run: curl -sL ping0.cc/cf.090227.xyz > ip.txt
 
       # 第三步：提交并推送文件到仓库
       - name: Commit and push if changed
@@ -48,7 +47,7 @@ jobs:
           # "git diff --staged --quiet" 会在有变动时返回非零值
           if ! git diff --staged --quiet; then
             # 提交变动
-            git commit -m "Update IP address from cf.090227.xyz"
+            git commit -m "Update multi-location IP report for cf.090227.xyz"
             # 推送到远程仓库
             git push
           else
