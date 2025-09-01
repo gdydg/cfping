@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   # 设置定时任务，每30分钟执行一次
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '0 0 0 15 * ?'
 
 # 定义一个或多个作业
 jobs:
